@@ -31,18 +31,48 @@ $(document).ready(function () {
 
             catListView.init()
             catsView.init()
+        },
+        getCats: function () {
+            return model.cats;
+        },
+        getCurrentCat: function () {
+            return model.currentCat;
         }
     };
 
     var catListView = {
         init: function () {
             console.log("cat list view init");
+            this.catListElem = $('#cats-list');
+
+            this.render();
+        },
+        render: function () {
+            console.log('cat list view render');
+            cats = octopus.getCats();
+            for (var i = 0; i < cats.length; i++) {
+                billi = cats[i]
+                var catsName = '<li><a href="#" id="' + i + '" class="select-cat">' + billi.name + '</a></li>';
+                this.catListElem.append(catsName);
+            }
         }
     };
 
     var catsView = {
         init: function () {
             console.log("cats view init")
+            this.catNameElem = $('#cat-name');
+            this.catPicElem = $('#cat-pic');
+            this.catCountElem = $('#cat-count');
+
+            this.render()
+        },
+        render: function () {
+            console.log("cats view render");
+            var currentCat = octopus.getCurrentCat();
+            this.catNameElem.text(currentCat.name);
+            this.catPicElem.attr("src", currentCat.imgURL);
+            this.catCountElem.text(currentCat.count);
         }
     };
 
