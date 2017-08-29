@@ -39,14 +39,17 @@ $(document).ready(function () {
         getCurrentCat: function () {
             return model.currentCat;
         },
+        setCurrentCat: function (index) {
+            model.currentCat = octopus.getCats()[index];
+            return model.currentCat;
+        },
         listenForActions: function () {
             $('.select-cat').click(function () {
-                    // billi = cats[this.id]
-                    // var catsImgAndCounter = '<h4>' + billi.name + '</h4><img id="' + this.id + '-pic" class="cat-image" height="150px" src="' + billi.imgURL + '"><p>Count: <span id="' + this.id + '-count">' + billi.count + '</span></p>';
-                    // $('#cats-list').html(catsImgAndCounter);
+                octopus.setCurrentCat(this.id);
+                catsView.render();
             });
 
-            $(document).on('click', '.cat-image', function () {
+            $('.cat-image').click(function () {
                 $("#cat-count").text(++octopus.getCurrentCat().count)
             });
         }
