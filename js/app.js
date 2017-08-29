@@ -31,12 +31,24 @@ $(document).ready(function () {
 
             catListView.init()
             catsView.init()
+            this.listenForActions()
         },
         getCats: function () {
             return model.cats;
         },
         getCurrentCat: function () {
             return model.currentCat;
+        },
+        listenForActions: function () {
+            $('.select-cat').click(function () {
+                    // billi = cats[this.id]
+                    // var catsImgAndCounter = '<h4>' + billi.name + '</h4><img id="' + this.id + '-pic" class="cat-image" height="150px" src="' + billi.imgURL + '"><p>Count: <span id="' + this.id + '-count">' + billi.count + '</span></p>';
+                    // $('#cats-list').html(catsImgAndCounter);
+            });
+
+            $(document).on('click', '.cat-image', function () {
+                $("#cat-count").text(++octopus.getCurrentCat().count)
+            });
         }
     };
 
