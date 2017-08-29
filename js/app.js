@@ -27,6 +27,8 @@ $(document).ready(function () {
     var octopus = {
         init: function () {
             console.log("octopus init")
+            model.currentCat = model.cats[0];
+
             catListView.init()
             catsView.init()
         }
