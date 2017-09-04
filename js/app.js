@@ -55,6 +55,7 @@ $(document).ready(function () {
             });
 
             $('.show-admin-area').click(function () {
+                adminAreaView.render();
                 $('.admin-area').show();
             });
 
@@ -111,8 +112,6 @@ $(document).ready(function () {
             this.updateCatNameElem = $("#updated-cat-name");
             this.updateCatURLElem = $("#updated-cat-url");
             this.updateCatCountElem = $("#updated-cat-count");
-
-            this.render();
         },
         render: function () {
             var currentCat = octopus.getCurrentCat();
