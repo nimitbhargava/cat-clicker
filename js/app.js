@@ -29,8 +29,9 @@ $(document).ready(function () {
             console.log("octopus init")
             model.currentCat = model.cats[0];
 
-            catListView.init()
-            catsView.init()
+            catListView.init();
+            catsView.init();
+            adminAreaView.init();
             this.listenForActions()
         },
         getCats: function () {
@@ -51,6 +52,18 @@ $(document).ready(function () {
 
             $('.cat-image').click(function () {
                 $("#cat-count").text(++octopus.getCurrentCat().count)
+            });
+
+            $('.show-admin-area').click(function () {
+                $('.admin-area').show();
+            });
+
+            $('.cancel-admin-area').click(function () {
+                $('.admin-area').hide();
+            });
+
+            $('.save-updated-cat').click(function () {
+                $('.admin-area').hide();
             });
         }
     };
@@ -90,6 +103,24 @@ $(document).ready(function () {
             this.catCountElem.text(currentCat.count);
         }
     };
+
+    var adminAreaView = {
+        init: function() {
+            console.log('admin area init');
+
+            this.updateCatNameElem = $("#updated-cat-name");
+            this.updateCatURLElem = $("#updated-cat-url");
+            this.updateCatCountElem = $("#updated-cat-count");
+
+            this.render();
+        },
+        render: function () {
+            var currentCat = octopus.getCurrentCat();
+            this.updateCatNameElem.val(currentCat.name);
+            this.updateCatURLElem.val(currentCat.imgURL);
+            this.updateCatCountElem.val(currentCat.count);
+        }
+    }
 
     octopus.init();
 });
