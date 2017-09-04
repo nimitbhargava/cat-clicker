@@ -46,6 +46,7 @@ $(document).ready(function () {
         },
         listenForActions: function () {
             $('.select-cat').click(function () {
+                $('.admin-area').hide();
                 octopus.setCurrentCat(this.id);
                 catsView.render();
             });
@@ -65,6 +66,11 @@ $(document).ready(function () {
 
             $('.save-updated-cat').click(function () {
                 $('.admin-area').hide();
+                var currentCat = octopus.getCurrentCat();
+                currentCat.name = $("#updated-cat-name").val();
+                currentCat.imgURL = $("#updated-cat-url").val();
+                currentCat.count = $("#updated-cat-count").val();
+                catsView.render();
             });
         }
     };
